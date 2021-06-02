@@ -94,7 +94,7 @@ if __name__ == '__main__':
     tree: DerivationTree
     tree = parser.parse('i+i*i', my_lex)
     tree.print_tree()
-    tree.graph().write_svg(path=r'.\some', prog=r'C:\Program Files (x86)\Graphviz2.38\bin\dot.exe')
+    tree.graph().write_svg(path=r'./some', prog=r'C:\Program Files (x86)\Graphviz2.38\bin\dot.exe')
     # todo falta mostrar la tabla
 
     print(table.rr_conflicts)

@@ -170,7 +170,7 @@ def factorize_grammar(grammar) -> Tuple[str, str, List[str]]:
 def regular_grammar(grammar) -> Tuple[bool, str]:
     if grammars_utils.is_regular_grammar(grammar):
         dfa = automaton_utils.reg_grammar2DFA(grammar)
-        dfa.graph().write_svg(path=r'.\static\automaton.svg', prog=graphviz_path)
+        dfa.graph().write_svg(path=r'./static/automaton.svg', prog=graphviz_path)
         return True, automaton_utils.automaton2reg(dfa)
 
     return False, ''
