@@ -1,0 +1,26 @@
+S->aS
+S->bS
+S->
+A->aS
+
+
+S->aS
+S->bA
+S->
+A->aS
+
+
+S->aB
+S->bS
+B->bS
+B->b
+esto no es regular pq el automata queda no determinista
+
+S->aA
+A->aB
+B->bS
+B->bB
+B->
+
+
+		

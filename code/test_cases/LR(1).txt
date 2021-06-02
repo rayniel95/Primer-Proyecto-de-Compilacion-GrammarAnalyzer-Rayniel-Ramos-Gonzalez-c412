@@ -1,0 +1,13 @@
+E->SS
+S->CC
+C->cC
+C->d
+
+cdcdcdcd
+cccdcdccdcd
+
+
+E->A=A
+E->a
+A->a+A
+A->a

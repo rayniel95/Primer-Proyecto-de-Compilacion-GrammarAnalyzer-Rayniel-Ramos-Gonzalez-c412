@@ -1,0 +1,8 @@
+A->CxA
+A->
+B->xCy
+B->xC
+C->xBx
+B->z
+
+xzxx

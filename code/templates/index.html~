@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>GrammarAnalyzer</title>
+</head>
+<body>
+	<form action="/" method="post">
+		<fieldset>
+			<legend>Introducir ruta a graphviz:</legend>
+			<input type="text" name="graphviz_path">
+			<input type="submit" name="set_graphviz_path" value="next">
+		</fieldset>
+	</form>
+</body>
+</html>

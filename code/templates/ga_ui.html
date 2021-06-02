@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>GrammarAnalyzer</title>
+</head>
+<body>
+	<form action="/" method="post">
+		<fieldset>
+			<legend>Introducir Gramatica:</legend>
+			<textarea name="grammar" cols="50" rows="25"></textarea>
+			<label for="id_words">Introducir palabras:</label>
+			<textarea name="words" id="id_words" cols="50" rows="25"></textarea>
+		</fieldset>
+		<input type="submit" name="try_ll1" value="try LL(1)">
+		<input type="submit" name="try_slr1" value="try SLR(1)">
+		<input type="submit" name="try_lr1" value="try LR(1)">
+		<input type="submit" name="try_lalr1" value="try LALR(1)">
+	</form>
+	<fieldset>
+		<legend>First:</legend>
+		{% for symbol, set in first.items() %}
+			<p>{{ symbol }}: {{ set }}</p>
+		{% endfor %}
+	</fieldset>
+	<fieldset>
+		<legend>Follows:</legend>
+		{% for symbol, set in follows.items() %}
+			<p>{{ symbol }}: {{ set }}</p>	
+		{% endfor %}
+	</fieldset>
+	<fieldset>
+		<legend>factorized:</legend>
+		<p>Terminals:</p>
+		<p>{{ factorized['terminals'] }}</p>
+		<p>No terminals:</p>
+		<p>{{ factorized['noterminals'] }}</p>
+		<p>Productions:</p>
+		{% for pro in factorized['productions'] %}
+			<p>{{ pro }}</p>
+		{% endfor %}
+	</fieldset>
+	<fieldset>
+		<legend>no left recursivity:</legend>	
+		<p> {{ terminals_dlr }} </p>
+		<p> {{ noterminals_dlr }} </p>
+		<p> {{ productions_dlr }} </p>
+	</fieldset>
+	<fieldset>
+		<legend>is regular???:</legend>	
+		{% if not is_regular %}
+			<p>La gramatica no es regular.</p>
+		{% else %}
+			<img src="{{ url_for('static', filename='automaton.svg') }}" alt=""/>
+			<p>{{ re }}</p>
+		{% endif %}
+	</fieldset>
+	<fieldset>
+		<legend>FNC:</legend>
+		{% for prod in fnc %}
+			<p>{{ prod }}</p>
+		{% endfor %}
+	</fieldset>
+	<fieldset>
+		<legend>Table:</legend>
+		<table>
+			<tr>
+				<th></th>
+				{% for col in action_cols %}
+					<th>{{ col }}</th>
+				{% endfor %}
+			</tr>
+			{% for row in action_rows %}
+				<tr>
+					<th>{{ row }}</th>
+					{% for col in action_cols %}
+						<td>{{ action_table[row, col] }}</td>
+				{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
+				<table>
+			<tr>
+				<th></th>
+				{% for col in goto_cols %}
+					<th>{{ col }}</th>
+				{% endfor %}
+			</tr>
+			{% for row in goto_rows %}
+				<tr>
+					<th>{{ row }}</th>
+					{% for col in goto_cols %}
+						<td>{{ goto_table[row, col] }}</td>
+				{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
+	</fieldset>
+	<fieldset>	
+	<fieldset>
+		<legend>Conflicts:</legend>
+		<p>Shift-reduce:</p>
+		<p>{{ sr_conflicts }}</p>
+		<p>Reduce-reduce:</p>
+		<p>{{ rr_conflicts }}</p>	
+	</fieldset>
+		<legend>Derivations Tree:</legend>
+		{% for tree_name in trees %}
+			<img src="{{ url_for('static', filename=tree_name) }}" alt="">
+		{% endfor %}
+	</fieldset>
+</body>
+</html>
